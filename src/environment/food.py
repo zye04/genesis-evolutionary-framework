@@ -1,0 +1,15 @@
+import pygame
+
+
+class Food:
+    def __init__(self, x, y, hunger_restoration, stamina_restoration):
+        self.x = x
+        self.y = y
+        self.hunger_restoration = hunger_restoration
+        self.stamina_restoration = stamina_restoration
+
+    # Draw food in the simulation
+    def draw(self, screen):
+        screen_x = self.x
+        screen_y = screen.get_height() - self.y
+        pygame.draw.circle(screen, (255, 0, 0), (screen_x, screen_y), 3)
