@@ -19,7 +19,8 @@ class Simulation:
     # Update frames within the simulation
     def update(self):
         for ant in self.ants:
-            ant.update(self.delta_time)
+            visible = ant.vision.observe(ant, self.foods)
+            ant.update(self.delta_time, visible)
             ant.clamp(self.screen)
 
             for food in self.foods.copy():
@@ -34,6 +35,7 @@ class Simulation:
         self.screen.fill((255, 255, 255))
 
         for ant in self.ants:
+            ant.vision.draw(self.screen, ant)
             ant.draw(self.screen)
 
         for food in self.foods:

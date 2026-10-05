@@ -1,11 +1,13 @@
 import pygame
 import math
-from agent.action_enum import Movement, Turn
+from agent.action_type import Movement, Turn
 
 
 class Ant:
     # Class constructor
-    def __init__(self, x, y, stamina_cap, speed, hunger_cap, images, controller):
+    def __init__(
+        self, x, y, stamina_cap, speed, hunger_cap, images, controller, vision
+    ):
         self.x = x
         self.y = y
         self.angle = 0
@@ -28,6 +30,7 @@ class Ant:
 
         # Controller that the Ant object is using
         self.controller = controller
+        self.vision = vision
 
     # Draw Ant
     def draw(self, screen):
@@ -81,10 +84,10 @@ class Ant:
             self.y = max_y
 
     # Update the Ant
-    def update(self, delta_time):
+    def update(self, delta_time, visible):
         # Update the delta time of the controller
         # The controller is in charge of the Ants behaviour so the movement and turn are defined through it
-        self.controller.update(delta_time)
+        self.controller.update(delta_time, visible)
         self.movement = self.controller.move
         self.turn_direction = self.controller.turn
 

@@ -1,4 +1,5 @@
 import pygame
+from environment.entity_type import Entity_type
 
 
 class Food:
@@ -7,6 +8,8 @@ class Food:
         self.y = y
         self.hunger_restoration = hunger_restoration
         self.stamina_restoration = stamina_restoration
+
+        self.entity_type = Entity_type.FOOD
 
     # Draw food in the simulation
     def draw(self, screen):

@@ -1,6 +1,7 @@
 import pygame
 from random import randint
 from agent.ant import Ant
+from agent.vision import Vision
 from simulation.simulation import Simulation
 from controller.random_controller import RC
 from environment.food import Food
@@ -20,10 +21,13 @@ for frame in range(3):
     ant_image = pygame.transform.scale(ant_image, (35, 50))
     ant_images.append(ant_image)
 
-# Creates 3 Ants
-for _ in range(3):
+# Creates 1 Ant
+for _ in range(1):
     brain_tmp = RC()
-    ant_tmp = Ant(randint(18, 783), randint(25, 575), 0, 35, 0, ant_images, brain_tmp)
+    vision_tmp = Vision(150, 140)
+    ant_tmp = Ant(
+        randint(18, 783), randint(25, 575), 0, 35, 0, ant_images, brain_tmp, vision_tmp
+    )
     sim.ants.append(ant_tmp)
 
 # Creates 20 foods
